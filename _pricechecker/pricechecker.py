@@ -1,8 +1,6 @@
 from bs4 import BeautifulSoup
 import cloudscraper
 import math
-import pprint
-import time
 import pickle
 
 # Takes a public Discogs store inventory and returns pricing information on other listings on the market.
@@ -49,7 +47,8 @@ def parse_list(URL, pages): # Takes URL of a store inventory, returns a list of 
     new_list = []
 
     for page in range(1, pages + 1):
-        new_URL = URL + "?&limit=250&sort=artist&sort_order=asc&page={0}".format(page)
+        # new_URL = URL + "?&limit=250&sort=artist&sort_order=asc&page={0}".format(page)
+        new_URL = URL + "?&limit=250&sort=price&sort_order=asc&page={0}".format(page)
         html = scraper.get(new_URL).content
         soup = BeautifulSoup(html, 'html.parser')
 
